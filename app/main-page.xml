@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" 
+      xmlns:maps="@nativescript/google-maps"
+      xmlns:components="./components"
+      navigatingTo="navigatingTo"
+      class="bg-gray-100">
+    
+    <ActionBar title="Épiceries à proximité" class="bg-green-600 text-white">
+        <ActionItem ios.position="right" android.position="actionBar" 
+                   text="Actualiser" 
+                   tap="{{ refreshStores }}" />
+    </ActionBar>
+    
+    <GridLayout rows="*, auto">
+        <maps:MapView row="0" 
+                     id="mapView"
+                     latitude="{{ userLocation.latitude }}"
+                     longitude="{{ userLocation.longitude }}"
+                     zoom="{{ mapConfig.defaultZoom }}"
+                     mapAnimationsEnabled="true"
+                     markers="{{ markers }}" />
+
+        <ListView row="1" 
+                 items="{{ stores }}" 
+                 height="250"
+                 class="bg-white rounded-t-lg">
+            <ListView.itemTemplate>
+                <components:store-list-item />
+            </ListView.itemTemplate>
+        </ListView>
+
+        <!-- Loading Indicator -->
+        <ActivityIndicator row="0" 
+                          rowSpan="2"
+                          busy="{{ isLoading }}"
+                          class="text-green-600" />
+    </GridLayout>
+</Page>

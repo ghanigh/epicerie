@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns="http://schemas.nativescript.org/tns.xsd" 
+           columns="*, auto" 
+           class="p-3 border-b border-gray-200">
+    <StackLayout col="0">
+        <Label text="{{ name }}" class="font-bold text-lg" />
+        <Label text="{{ address }}" class="text-gray-600" />
+        <GridLayout columns="auto, *" class="mt-1">
+            <Label col="0" 
+                   text="{{ isOpen ? '🟢 Ouvert' : '🔴 Fermé' }}" 
+                   class="{{ isOpen ? 'text-green-600' : 'text-red-600' }}" />
+            <Label col="1" 
+                   text="{{ openingHours.open | formatTime }} - {{ openingHours.close | formatTime }}" 
+                   class="text-sm text-gray-500 ml-2" />
+        </GridLayout>
+    </StackLayout>
+    <StackLayout col="1" class="justify-center">
+        <Label text="{{ distance | formatDistance }}" 
+               class="text-right text-green-600 font-medium" />
+    </StackLayout>
+</GridLayout>
